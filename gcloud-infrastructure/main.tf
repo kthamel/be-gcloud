@@ -36,3 +36,26 @@ resource "google_compute_firewall" "devo-vpc" {
 
   source_ranges = ["0.0.0.0/0"]
 }
+
+resource "google_compute_instance" "jenkins-instance" {
+  name         = "jenkins-instance"
+  project      = "kthamel-gcloud"
+  machine_type = "e2-micro"
+  zone         = "us-west1-a"
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+    }
+  }
+  network_interface {
+    network = "default"
+  }
+  labels = {
+    name    = "devo-jenkins-gcp-instance"
+    project = "kthamel-gcloud"
+  }
+}
+
+output "self_link_value" {
+  value = google_compute_instance.jenkins-instance.self_link
+}
