@@ -5,19 +5,21 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 echo 'Hello World'
-                sh 'pwd'
+                sh 'ls -l'
             }
         }
 
         stage('Terraform Plan') {
             steps {
                 echo 'Hello World'
+                sh 'ls -l'
             }
         }
 
         stage('Terraform Apply') {
             steps {
                 echo 'Hello World'
+                sh 'ls -l'
             }
         }
     }
