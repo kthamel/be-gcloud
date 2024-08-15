@@ -11,24 +11,18 @@ pipeline {
 
         stage('Check Dependencies') {
             steps {
-                sh 'helm version'
-                sh 'skaffold version'
+                sh 'gcloud services enable container.googleapis.com'
+                sh 'gcloud container clusters get-credentials devo-gke-cluster --region=us-west1'
+                sh 'gcloud auth configure-docker -q'
             }
         }
 
-        // stage('Check Dependencies') {
-        //     steps {
-        //         sh 'gcloud services enable container.googleapis.com'
-        //         sh 'gcloud container clusters get-credentials devo-gke-cluster --region=us-west1'
-        //     }
-        // }
-
-        // stage('Check Dependencies') {
-        //     steps {
-        //         dir ("microservices-demo"){
-        //             sh 'terraform init -upgrade'
-        //         }
-        //     }
-        // }
+        stage('Check Dependencies') {
+            steps {
+                dir ("microservices-demo"){
+                    sh 'kaffold run --default-repo=gcr.io/kthamel-gcloud'
+                }
+            }
+        }
     }
 }
