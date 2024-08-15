@@ -9,7 +9,7 @@ pipeline {
             }
         }
 
-        stage('Check Dependencies') {
+        stage('Pre Configurations') {
             steps {
                 sh 'gcloud services enable container.googleapis.com'
                 sh 'gcloud container clusters get-credentials devo-gke-cluster --region=us-west1'
@@ -17,7 +17,7 @@ pipeline {
             }
         }
 
-        stage('Check Dependencies') {
+        stage('Deploy to GKE') {
             steps {
                 dir ("microservices-demo"){
                     sh 'skaffold run --default-repo=gcr.io/kthamel-gcloud'
