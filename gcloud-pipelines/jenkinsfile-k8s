@@ -12,7 +12,6 @@ pipeline {
         stage('Check Dependencies') {
             steps {
                 sh 'helm version'
-                sh 'kubectl version'
                 sh 'skaffold version'
             }
         }
