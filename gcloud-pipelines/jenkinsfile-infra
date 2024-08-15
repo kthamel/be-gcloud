@@ -35,16 +35,16 @@ pipeline {
             }
             steps {
                 dir ("gcloud-infrastructure"){
-                    sh 'terraform apply --auto-approve'
-                    // sh 'terraform destroy --auto-approve'
+                    //sh 'terraform apply --auto-approve'
+                    sh 'terraform destroy --auto-approve'
                 }
             }
         }
 
-        stage ('Invoke Downstream Pipeline') {
-            steps {
-                build job: 'pipeline-deployment', wait: true
-            }
-        }
+        // stage ('Invoke Downstream Pipeline') {
+        //     steps {
+        //         build job: 'pipeline-deployment', wait: true
+        //     }
+        // }
     }
 }
