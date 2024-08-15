@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Clone Gcloud Repo') {
             steps {
+                sh 'rm -rf *'
                 sh 'git clone https://github.com/GoogleCloudPlatform/microservices-demo.git'
             }
         }
