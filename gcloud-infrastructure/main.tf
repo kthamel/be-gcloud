@@ -5,26 +5,34 @@ resource "google_compute_network" "devo-vpc" {
   mtu                     = 1600
 }
 
-resource "google_compute_subnetwork" "devo-vpc-nodes-subnet" {
-  name          = "devo-vpc-nodes-subnet"
+resource "google_compute_subnetwork" "devo-vpc-subnet" {
+  name          = "devo-vpc-subnet"
   ip_cidr_range = "10.0.0.0/16"
   region        = "us-west1"
-  network       = google_compute_network.devo-vpc.id
+  network       = google_compute_network.devo-vpc.self_link
   project       = google_compute_network.devo-vpc.project
+
+  secondary_ip_range {
+    range_name    = "pods"
+    ip_cidr_range = "10.1.0.0/16"
+  }
+
+  secondary_ip_range {
+    range_name    = "services"
+    ip_cidr_range = "10.2.0.0/16"
+  }
 }
 
-resource "google_compute_subnetwork" "devo-vpc-pods-subnet" {
-  name          = "evo-vpc-pods-subnet"
-  ip_cidr_range = "10.1.0.0/16"
-  region        = "us-west1"
-  network       = google_compute_network.devo-vpc.id
-  project       = google_compute_network.devo-vpc.project
-}
+resource "google_compute_firewall" "devo-vpc" {
+  name     = "kthamel-vpc-dev-firewall-all"
+  network  = google_compute_network.devo-vpc.self_link
+  project  = google_compute_network.devo-vpc.project
+  priority = 100
 
-resource "google_compute_subnetwork" "devo-vpc-services-subnet" {
-  name          = "devo-vpc-services-subnet"
-  ip_cidr_range = "10.2.0.0/16"
-  region        = "us-west1"
-  network       = google_compute_network.devo-vpc.id
-  project       = google_compute_network.devo-vpc.project
+  allow {
+    protocol = "tcp"
+    ports    = ["0-65535"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
 }
