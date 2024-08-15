@@ -2,12 +2,33 @@ pipeline {
     agent any
 
     stages {
-        stage('Kubernetes deployment') {
+        stage('Clone Gcloud Repo') {
             steps {
-                dir ("gcloud-microservices"){
-                    sh 'terraform init -upgrade'
-                }
+                sh 'git clone https://github.com/GoogleCloudPlatform/microservices-demo.git'
             }
         }
+
+        stage('Check Dependencies') {
+            steps {
+                sh 'helm version'
+                sh 'kubectl version'
+                sh 'skaffold version'
+            }
+        }
+
+        // stage('Check Dependencies') {
+        //     steps {
+        //         sh 'gcloud services enable container.googleapis.com'
+        //         sh 'gcloud container clusters get-credentials devo-gke-cluster --region=us-west1'
+        //     }
+        // }
+
+        // stage('Check Dependencies') {
+        //     steps {
+        //         dir ("microservices-demo"){
+        //             sh 'terraform init -upgrade'
+        //         }
+        //     }
+        // }
     }
 }
