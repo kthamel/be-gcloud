@@ -5,7 +5,7 @@ resource "google_container_cluster" "devo-gke-cluster" {
   initial_node_count       = 1
   project                  = "kthamel-gcloud"
   network                  = google_compute_network.devo-vpc.id
-  subnetwork               = google_compute_subnetwork.devo-vpc.id
+  subnetwork               = google_compute_subnetwork.devo-vpc-subnet.id
   deletion_protection      = false
 
   ip_allocation_policy {
