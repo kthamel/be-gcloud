@@ -6,7 +6,7 @@ resource "google_compute_network" "devo-vpc" {
 }
 
 resource "google_compute_subnetwork" "devo-vpc-nodes-subnet" {
-  name          = "devo-vpc-us-west1"
+  name          = "devo-vpc-nodes-subnet"
   ip_cidr_range = "10.0.0.0/16"
   region        = "us-west1"
   network       = google_compute_network.devo-vpc.id
@@ -14,7 +14,7 @@ resource "google_compute_subnetwork" "devo-vpc-nodes-subnet" {
 }
 
 resource "google_compute_subnetwork" "devo-vpc-pods-subnet" {
-  name          = "devo-vpc-us-west1"
+  name          = "evo-vpc-pods-subnet"
   ip_cidr_range = "10.1.0.0/16"
   region        = "us-west1"
   network       = google_compute_network.devo-vpc.id
@@ -22,7 +22,7 @@ resource "google_compute_subnetwork" "devo-vpc-pods-subnet" {
 }
 
 resource "google_compute_subnetwork" "devo-vpc-services-subnet" {
-  name          = "devo-vpc-us-west1"
+  name          = "devo-vpc-services-subnet"
   ip_cidr_range = "10.2.0.0/16"
   region        = "us-west1"
   network       = google_compute_network.devo-vpc.id
