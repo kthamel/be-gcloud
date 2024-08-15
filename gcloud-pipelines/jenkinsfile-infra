@@ -5,6 +5,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 echo 'Hello World'
+                sh 'pwd'
             }
         }
 
