@@ -8,13 +8,13 @@ resource "google_compute_network" "devo-vpc" {
 resource "google_tags_tag_key" "devo-tag-key" {
   parent = "organizations/628761461841"
   short_name = "Project"
-  description = "Devoteam IaC"
+  description = "Devoteam_IaC"
 }
 
 resource "google_tags_tag_value" "devo-tag-value" {
   parent = "tagKeys/${google_tags_tag_key.devo-tag-key}"
-  short_name = "Gcloud IAC"
-  description = "Devoteam IaC"
+  short_name = "Gcloud_IAC"
+  description = "Devoteam_IaC"
 }
 
 resource "google_compute_subnetwork" "devo-vpc-nodes-subnet" {
