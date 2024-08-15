@@ -20,7 +20,7 @@ pipeline {
         stage('Check Dependencies') {
             steps {
                 dir ("microservices-demo"){
-                    sh 'kaffold run --default-repo=gcr.io/kthamel-gcloud'
+                    sh 'skaffold run --default-repo=gcr.io/kthamel-gcloud'
                 }
             }
         }
