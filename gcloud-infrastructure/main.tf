@@ -1,6 +1,6 @@
 resource "google_compute_network" "devo-vpc" {
   name                    = "devo-vpc"
-  project                 = "terraform-gcp-infrastructure"
+  project                 = "kthamel-gcloud"
   auto_create_subnetworks = false
   mtu                     = 1600
 }

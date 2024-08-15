@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "google" {
-  project = "us-west1"
+  project = "kthamel-gcloud"
   region = "us-west1"
   zone = "us-west1-a"
 }
