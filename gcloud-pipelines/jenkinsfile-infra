@@ -4,22 +4,25 @@ pipeline {
     stages {
         stage('Terraform Init') {
             steps {
-                echo 'Hello World'
-                sh 'ls -l'
+                dir ("gcloud-infrastructure"){
+                    sh 'terraform init'
+                }
             }
         }
 
         stage('Terraform Plan') {
             steps {
-                echo 'Hello World'
-                sh 'ls -l'
+                dir ("gcloud-infrastructure"){
+                    sh 'terraform plan'
+                }
             }
         }
 
         stage('Terraform Apply') {
             steps {
-                echo 'Hello World'
-                sh 'ls -l'
+                dir ("gcloud-infrastructure"){
+                    sh 'terraform apply --auto-approve'
+                }
             }
         }
     }
