@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                sh 'git clone https://github.com/GoogleCloudPlatform/microservices-demo.git'
             }
         }
     }
