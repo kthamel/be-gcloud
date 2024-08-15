@@ -2,9 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Kubernetes deployment') {
             steps {
-                sh 'echo Hello'
+                dir ("gcloud-microservices"){
+                    sh 'terraform init -upgrade'
+                }
             }
         }
     }
