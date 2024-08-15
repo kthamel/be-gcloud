@@ -1,6 +1,6 @@
 resource "google_container_cluster" "devo-gke-cluster" {
   name = "kthamel-gke-cluster"
-  location                 = "us-central1-a"
+  location                 = "us-west1-a"
   remove_default_node_pool = true
   initial_node_count       = 1
   project                  = "kthamel-gcloud"
