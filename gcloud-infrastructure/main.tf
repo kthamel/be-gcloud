@@ -5,14 +5,14 @@ resource "google_compute_network" "devo-vpc" {
   mtu                     = 1600
 }
 
-resource "google_tags_tag_key" "devo-tag-key" {
+resource "google_tags_tag_key" "key" {
   parent = "organizations/628761461841"
   short_name = "Project"
   description = "Devoteam_IaC"
 }
 
-resource "google_tags_tag_value" "devo-tag-value" {
-  parent = "tagKeys/${google_tags_tag_key.devo-tag-key}"
+resource "google_tags_tag_value" "value" {
+  parent = "tagKeys/${google_tags_tag_key.key}"
   short_name = "Gcloud_IAC"
   description = "Devoteam_IaC"
 }
