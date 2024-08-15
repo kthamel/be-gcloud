@@ -2,7 +2,19 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Terraform Init') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+
+        stage('Terraform Apply') {
             steps {
                 echo 'Hello World'
             }
