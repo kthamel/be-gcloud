@@ -20,7 +20,6 @@ pipeline {
         stage('Deploy to GKE') {
             steps {
                 dir ("microservices-demo"){
-                    // sh 'skaffold delete'
                     sh 'skaffold run --default-repo=gcr.io/kthamel-gcloud'
                 }
             }
