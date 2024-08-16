@@ -21,7 +21,7 @@ resource "google_container_node_pool" "devo-gke-cluster-nodes" {
   node_count = 1
 
   autoscaling {
-    min_node_count = 8
+    min_node_count = 5
     max_node_count = 8
   }
 
