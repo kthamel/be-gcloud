@@ -24,7 +24,7 @@ resource "google_compute_subnetwork" "devo-vpc-subnet" {
 }
 
 resource "google_compute_firewall" "devo-vpc" {
-  name     = "kthamel-vpc-dev-firewall-all"
+  name     = "devo-vpc-firewall-all"
   network  = google_compute_network.devo-vpc.self_link
   project  = google_compute_network.devo-vpc.project
   priority = 100
