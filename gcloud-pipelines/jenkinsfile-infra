@@ -5,7 +5,6 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 dir ("gcloud-infrastructure"){
-                    sh 'pwd'
                     sh 'terraform init -reconfigure'
                 }
             }
