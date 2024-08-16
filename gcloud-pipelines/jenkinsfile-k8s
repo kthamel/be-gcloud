@@ -28,6 +28,23 @@ pipeline {
         stage('External IP Address') {
             steps {
                 sh 'kubectl get service frontend-external'
+                sh 'sleep 300'
+            }
+        }
+
+        stage('K8S Destroy') {
+            steps {
+                dir ("microservices-demo"){
+                    sh 'skaffold delete'
+                }
+            }
+        }
+        
+        stage('Terraform Destroy') {
+            steps {
+                dir ("gcloud-infrastructure"){
+                    sh 'terraform destroy --auto-approve'
+                }
             }
         }
     }

@@ -39,36 +39,5 @@ pipeline {
                 }
             }
         }
-
-        stage ('Invoke Downstream Pipeline') {
-            steps {
-                build job: 'pipeline-deployment', wait: true
-            }
-        }
-
-        stage('Warning Message') {
-            steps {
-                dir ("gcloud-infrastructure"){
-                    sh 'echo Resources will be deleted after 1 hour'
-                    sh 'sleep 300'
-                }
-            }
-        }
-
-        stage('K8S Destroy') {
-            steps {
-                dir ("microservices-demo"){
-                    sh 'skaffold delete'
-                }
-            }
-        }
-        
-        stage('Terraform Destroy') {
-            steps {
-                dir ("gcloud-infrastructure"){
-                    sh 'terraform destroy --auto-approve'
-                }
-            }
-        }
     }
 }
