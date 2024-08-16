@@ -36,3 +36,4 @@ resource "google_compute_firewall" "devo-vpc" {
 
   source_ranges = ["0.0.0.0/0"]
 }
+
