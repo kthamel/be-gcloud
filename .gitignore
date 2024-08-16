@@ -7,7 +7,6 @@
 .skaffold-*.yaml
 .terraform.lock.hcl
 .terraform/*
-gcloud-jenkins/.terraform/*
 .venv/
 .vs/
 .vscode/
