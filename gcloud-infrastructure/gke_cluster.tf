@@ -27,7 +27,7 @@ resource "google_container_node_pool" "devo-gke-cluster-system-nodes" {
 
   node_config {
     preemptible  = true
-    machine_type = "e2-micro"
+    machine_type = "e2-medium"
     disk_size_gb = 20
     labels = {
       name = "system-node"
@@ -48,7 +48,7 @@ resource "google_container_node_pool" "devo-gke-cluster-worker-nodes" {
 
   node_config {
     preemptible  = true
-    machine_type = "e2-micro"
+    machine_type = "e2-medium"
     disk_size_gb = 20
     labels = {
       name = "worker-node"
