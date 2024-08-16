@@ -31,7 +31,7 @@ resource "google_compute_firewall" "devo-vpc" {
 
   allow {
     protocol = "tcp"
-    ports    = ["0-65535"]
+    ports    = ["80"]
   }
 
   source_ranges = ["0.0.0.0/0"]
