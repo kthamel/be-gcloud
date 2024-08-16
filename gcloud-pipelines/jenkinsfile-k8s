@@ -12,17 +12,17 @@ pipeline {
         stage('Pre Configurations') {
             steps {
                 sh 'echo Hello'
-                // sh 'gcloud services enable container.googleapis.com'
-                // sh 'gcloud container clusters get-credentials devo-gke-cluster --region=us-west1-a'
-                // sh 'gcloud auth configure-docker -q'
+                sh 'gcloud services enable container.googleapis.com'
+                sh 'gcloud container clusters get-credentials devo-gke-cluster --region=us-west1-a'
+                sh 'gcloud auth configure-docker -q'
             }
         }
 
         stage('Deploy to GKE') {
             steps {
                 dir ("microservices-demo"){
-                    sh 'skaffold delete'
-                    //sh 'skaffold run --default-repo=gcr.io/kthamel-gcloud'
+                    // sh 'skaffold delete'
+                    sh 'skaffold run --default-repo=gcr.io/kthamel-gcloud'
                 }
             }
         }
