@@ -50,7 +50,7 @@ pipeline {
             steps {
                 dir ("gcloud-infrastructure"){
                     sh 'echo Resources will be deleted after 1 hour'
-                    sh 'sleep 3600'
+                    sh 'sleep 300'
                 }
             }
         }
