@@ -24,10 +24,10 @@ pipeline {
                 }
             }
         }
-        
+
         stage('External IP Address') {
             steps {
-                    sh 'kubectl get service frontend-external'
+                sh 'kubectl get service frontend-external'
             }
         }
     }
