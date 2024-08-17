@@ -12,7 +12,7 @@
 [Only accessible from MY IP address] || << It's /32 
 [That VM is configured using the blow]
 
-///
+[
 #!/bin/bash
 curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
 sudo install skaffold /usr/local/bin/
@@ -47,3 +47,4 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
 gke-gcloud-auth-plugin --version
 ///
+]
