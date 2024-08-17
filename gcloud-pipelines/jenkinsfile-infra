@@ -19,9 +19,6 @@ pipeline {
         }
 
         stage('Request Approval') {
-            when {
-                expression { env.BRANCH_NAME == "origin/main" }
-            }
             steps {
                 script {
                    timeout(time: 1, unit: 'HOURS') {
