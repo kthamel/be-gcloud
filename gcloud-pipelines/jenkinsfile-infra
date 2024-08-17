@@ -50,6 +50,9 @@ pipeline {
         }
 
         stage('Terraform Plan before Destroy') {
+            when {
+                expression { env.BRANCH_NAME == "origin/main" }
+            }
             steps {
                 dir ("gcloud-infrastructure"){
                     sh 'terraform plan'
@@ -58,9 +61,20 @@ pipeline {
         }
 
         stage('Terraform Destroy') {
+            when {
+                expression { env.BRANCH_NAME == "origin/main" }
+            }
             steps {
                 dir ("gcloud-infrastructure"){
                     sh 'terraform destroy --auto-approve'
+                }
+            }
+        }
+
+        stage('Completed') {
+            steps {
+                dir ("gcloud-infrastructure"){
+                    sh 'echo Successfully Completed!!!'
                 }
             }
         }
