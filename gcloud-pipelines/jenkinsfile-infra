@@ -41,9 +41,6 @@ pipeline {
         }
 
         stage ('Invoke Downstream Pipeline') {
-            when {
-                expression { env.BRANCH_NAME == "origin/main" }
-            }
             steps {
                 build job: 'pipeline-deployment', wait: true
             }
@@ -61,6 +58,14 @@ pipeline {
             steps {
                 dir ("gcloud-infrastructure"){
                     sh 'terraform destroy --auto-approve'
+                }
+            }
+        }
+
+        stage('Completed') {
+            steps {
+                dir ("gcloud-infrastructure"){
+                    sh 'echo Successfully Completed!!!'
                 }
             }
         }
