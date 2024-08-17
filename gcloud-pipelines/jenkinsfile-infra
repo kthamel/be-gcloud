@@ -31,7 +31,10 @@ pipeline {
         
         stage('Terraform Apply') {
             when {
+                allOf {
                 expression { approvalStatus["ApprovalStatus"] == 'Approved' }
+                expression { env.BRANCH_NAME == "origin/main" }
+                }
             }
             steps {
                 dir ("gcloud-infrastructure"){
@@ -41,6 +44,9 @@ pipeline {
         }
 
         stage ('Invoke Downstream Pipeline') {
+            when {
+                expression { env.BRANCH_NAME == "origin/main" }
+            }
             steps {
                 build job: 'pipeline-deployment', wait: true
             }
