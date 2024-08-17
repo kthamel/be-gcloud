@@ -10,14 +10,6 @@ pipeline {
             }
         }
 
-        stage('Terraform Init') {
-            steps {
-                dir ("gcloud-infrastructure"){
-                    sh 'terraform init -reconfigure'
-                }
-            }
-        }
-
         stage('Terraform Plan') {
             steps {
                 dir ("gcloud-infrastructure"){
