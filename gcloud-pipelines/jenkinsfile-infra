@@ -31,10 +31,7 @@ pipeline {
         
         stage('Terraform Apply') {
             when {
-                allOf {
                 expression { approvalStatus["ApprovalStatus"] == 'Approved' }
-                expression { env.BRANCH_NAME == "origin/main" }
-                }
             }
             steps {
                 dir ("gcloud-infrastructure"){
