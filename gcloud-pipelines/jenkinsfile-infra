@@ -19,6 +19,9 @@ pipeline {
         }
 
         stage('Request Approval') {
+            when {
+                branch 'main'
+            }
             steps {
                 script {
                    timeout(time: 1, unit: 'HOURS') {
@@ -41,9 +44,6 @@ pipeline {
         }
 
         stage ('Invoke Downstream Pipeline') {
-            when {
-                branch 'main'
-            }
             steps {
                 build job: 'pipeline-deployment', wait: true
             }
