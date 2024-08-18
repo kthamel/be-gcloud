@@ -19,6 +19,9 @@ pipeline {
         }
 
         stage('Request Approval') {
+            when {
+                branch 'main'
+            }
             steps {
                 script {
                    timeout(time: 1, unit: 'HOURS') {
@@ -41,12 +44,6 @@ pipeline {
         }
 
         stage ('Invoke Downstream Pipeline') {
-            if (env.BRANCH_NAME == 'main') {
-                echo 'Deploying to GKE...'
-            } 
-            else {
-                echo 'Skipping Invoke...'
-            }
             steps {
                 build job: 'pipeline-deployment', wait: true
             }
