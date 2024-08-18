@@ -19,9 +19,6 @@ pipeline {
         }
 
         stage('Request Approval') {
-            when {
-                branch 'main'
-            }
             steps {
                 script {
                    timeout(time: 1, unit: 'HOURS') {
