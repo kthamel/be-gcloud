@@ -41,8 +41,11 @@ pipeline {
         }
 
         stage ('Invoke Downstream Pipeline') {
-            when {
-                branch 'main'
+            if (env.BRANCH_NAME == 'main') {
+                echo 'Deploying to GKE...'
+            } 
+            else {
+                echo 'Skipping Invoke...'
             }
             steps {
                 build job: 'pipeline-deployment', wait: true
